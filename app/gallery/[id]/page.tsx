@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../../styles/gallery.css';
 import Link from 'next/link';
 import { galleryPhotos } from '@/app/pictures';
