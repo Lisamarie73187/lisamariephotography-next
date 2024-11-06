@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+    padding-bottom: 20px;
+  
+    h2{
+      padding: 0 40px;
+      cursor: pointer;
+    }
+  }
+  
+  .image {
+    padding: 10px 15vw
+  }
