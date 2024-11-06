@@ -2,9 +2,10 @@ import React from 'react';
 import { Gallery } from './Gallery';
 import '../styles/gallery.css';
 import Link from 'next/link';
-const imageOne = "https://lisamariephotography.s3.us-west-1.amazonaws.com/Maya-1.jpg"
-const imageTwo = "https://lisamariephotography.s3.us-west-1.amazonaws.com/Maya-2.jpg"
-const imageThree = "https://lisamariephotography.s3.us-west-1.amazonaws.com/Maya-3.jpg"
+
+const imageOne = "https://lisamariephotography.s3.us-west-1.amazonaws.com/nature/nature-tall-1.jpg"
+const imageTwo = "https://lisamariephotography.s3.us-west-1.amazonaws.com/portraits/portrait-tall-13.jpg"
+const imageThree = "https://lisamariephotography.s3.us-west-1.amazonaws.com/families/families-tall-2.jpg"
 
 
 export const GallerySection: React.FC = () => {
@@ -12,11 +13,15 @@ export const GallerySection: React.FC = () => {
         <div className='portfolio'>
             <h1>Gallery</h1>
             <div className='portfolio-section'>   
-                <Link href={`/gallery/2`}>
-                    <Gallery  image={imageOne} title="Nature"/>
+                <Link href={`/gallery/nature`}>
+                    <Gallery image={imageOne} title="Nature"/>
                 </Link>
-                <Gallery  image={imageTwo} title="Pets"/>
-                <Gallery  image={imageThree} title="Couples"/>
+                <Link href={`/gallery/portraits`}>
+                    <Gallery  image={imageTwo} title="Portraits"/>
+                </Link>
+                <Link href={`/gallery/families`}>
+                    <Gallery image={imageThree} title="Families & Couples"/>
+                </Link>
             </div>
         </div>
 

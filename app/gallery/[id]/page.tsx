@@ -1,32 +1,33 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useEffect } from 'react';
 import '../../styles/gallery.css';
-import Header from '@/app/components/Header';
-const use = React.use;
+import Link from 'next/link';
+import { galleryPhotos } from '@/app/pictures';
 
-const photos: string[] = [
-  'https://lisamariephotography.s3.us-west-1.amazonaws.com/nature/nature-long-1.jpg',
-  'https://lisamariephotography.s3.us-west-1.amazonaws.com/nature/nature-tall-2.jpg',
-  'https://lisamariephotography.s3.us-west-1.amazonaws.com/nature/nature-long-1.jpg',
-  'https://lisamariephotography.s3.us-west-1.amazonaws.com/nature/nature-tall-2.jpg'
-];
 
 interface GalleryPageProps {
   params: Promise<{ id: string }>;
 }
 
 const GalleryPage: React.FC<GalleryPageProps> = ({ params }) => {
-  const unwrappedParams = use(params);
+  const unwrappedParams = React.use(params);
   const { id } = unwrappedParams;
+  const project = galleryPhotos.find((project) => project.id === id);
 
-  console.log({ id });
 
   return (
     <div>
       <div className="gallery-container">
-        <h1>Gallery</h1>
+        <div className='home'>
+            <Link href="/">
+                <h2>Home</h2>
+            </Link>
+            </div>
+            <h3>{project?.title}</h3>
+                <h1>GALLERY</h1>
+                <div className='styled-line'></div>
         <div className="photo-grid">
-          {photos.map((photo, index) => (
+          {project?.images.map((photo, index) => (
             <div key={index}>
               {photo.includes('tall') ? (
                 <div className="photo-tall">

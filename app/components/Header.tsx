@@ -1,6 +1,5 @@
 "use client";
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import '../styles/header.css';
 
@@ -14,16 +13,13 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ refs }) => {
-    const router = useRouter();
+
+
 
     const navigateAndScroll = (ref: React.RefObject<HTMLDivElement>) => {
-        if (window.location.pathname === '/') {
-            ref.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        } else {
-            router.push('/');
-        }
+        ref.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
     };
-    
+
     return (
         <header className="header">
             <h2 onClick={() => navigateAndScroll(refs.homeRef)}>
