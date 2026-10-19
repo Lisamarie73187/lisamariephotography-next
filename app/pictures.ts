@@ -63,7 +63,7 @@ export const galleries: GalleryCollection[] = [
       nature("tall-4", 1000, 1500, 11),
       nature("long-8", 2000, 1333, 13),
       nature("tall-6", 1000, 1469, 14),
-      nature("long-9", 1500, 1000, 15),
+      nature("long-11", 1536, 1024, 15),
       nature("tall-7", 1000, 1500, 16),
       nature("tall-8", 1000, 1500, 17),
       nature("tall-9", 1000, 1500, 19),
@@ -89,7 +89,7 @@ export const galleries: GalleryCollection[] = [
       portrait("tall-11", 660, 1000, 13),
       portrait("tall-12", 667, 1000, 14),
       portrait("tall-13", 667, 1000, 15),
-      portrait("tall-15", 1417, 2000, 16),
+      portrait("tall-16", 1055, 1490, 16),
     ],
   },
   {
