@@ -1,16 +1,17 @@
-import React from 'react';
-import ContactForm from './ContactForm';
-import '../styles/contact.css';
+import React from "react";
+import ContactForm from "./ContactForm";
+import { Section, SectionHeading } from "./ui";
+import styles from "./Contact.module.css";
 
-
-const Contact: React.FC= () => {
-    return (
-        <div className='contact'>
-            <h1>CONTACT</h1>
-            <h3>Let&apos;s Make Some Memories</h3>
-            <ContactForm/>
-        </div>
-    );
+const Contact: React.FC = () => {
+  return (
+    <Section id="contact" narrow>
+      <SectionHeading eyebrow="Let's Make Some Memories" title="Contact" divider />
+      <div className={styles.form}>
+        <ContactForm />
+      </div>
+    </Section>
+  );
 };
 
 export default Contact;

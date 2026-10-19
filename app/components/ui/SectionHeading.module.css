@@ -1,0 +1,27 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.title {
+  margin: 0;
+}
+
+.divider {
+  width: min(30%, 12rem);
+  margin: var(--space-3) auto 0;
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.left .divider {
+  margin-inline: 0;
+}

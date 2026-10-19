@@ -1,0 +1,11 @@
+.back {
+  margin-bottom: var(--space-6);
+}
+
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}

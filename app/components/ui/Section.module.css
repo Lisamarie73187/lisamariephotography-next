@@ -1,0 +1,18 @@
+.section {
+  padding-block: var(--space-8);
+}
+
+.muted {
+  background: var(--color-surface);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: var(--space-9);
+  }
+}
+
+/* Declared after the breakpoint so it wins at every width. */
+.tightBottom {
+  padding-bottom: var(--space-3);
+}

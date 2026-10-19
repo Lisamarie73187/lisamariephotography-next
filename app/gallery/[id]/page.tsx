@@ -1,49 +1,50 @@
-"use client";
-import React from 'react';
-import '../../styles/gallery.css';
-import Link from 'next/link';
-import { galleryPhotos } from '@/app/pictures';
-
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { galleries } from "@/app/pictures";
+import { GalleryGrid } from "@/app/components/GalleryGrid";
+import { Button, Section, SectionHeading } from "@/app/components/ui";
+import styles from "./gallery.module.css";
 
 interface GalleryPageProps {
   params: Promise<{ id: string }>;
 }
 
-const GalleryPage: React.FC<GalleryPageProps> = ({ params }) => {
-  const unwrappedParams = React.use(params);
-  const { id } = unwrappedParams;
-  const project = galleryPhotos.find((project) => project.id === id);
+// Only the galleries in pictures.ts exist; anything else is a 404.
+export const dynamicParams = false;
 
+export function generateStaticParams() {
+  return galleries.map((gallery) => ({ id: gallery.id }));
+}
+
+export async function generateMetadata({ params }: GalleryPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const gallery = galleries.find((g) => g.id === id);
+  return gallery ? { title: gallery.title } : {};
+}
+
+export default async function GalleryPage({ params }: GalleryPageProps) {
+  const { id } = await params;
+  const gallery = galleries.find((g) => g.id === id);
+  if (!gallery) notFound();
+
+  const others = galleries.filter((g) => g.id !== gallery.id);
 
   return (
-    <div>
-      <div className="gallery-container">
-        <div className='home'>
-            <Link href="/">
-                <h2>Home</h2>
-            </Link>
-            </div>
-            <h3>{project?.title}</h3>
-                <h1>GALLERY</h1>
-                <div className='styled-line'></div>
-        <div className="photo-grid">
-          {project?.images.map((photo, index) => (
-            <div key={index}>
-              {photo.includes('tall') ? (
-                <div className="photo-tall">
-                  <img src={photo} alt={`Gallery Image ${index + 1}`} />
-                </div>
-              ) : (
-                <div className="photo-long">
-                  <img src={photo} alt={`Gallery Image ${index + 1}`} />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
+    <Section>
+      <Button href="/#gallery" variant="secondary" className={styles.back}>
+        ← All galleries
+      </Button>
+      <SectionHeading as="h1" eyebrow="Gallery" title={gallery.title} divider />
 
-export default GalleryPage;
+      <GalleryGrid photos={gallery.photos} />
+
+      <nav aria-label="More galleries" className={styles.more}>
+        {others.map((other) => (
+          <Button key={other.id} href={`/gallery/${other.id}`} variant="secondary">
+            {other.title}
+          </Button>
+        ))}
+      </nav>
+    </Section>
+  );
+}

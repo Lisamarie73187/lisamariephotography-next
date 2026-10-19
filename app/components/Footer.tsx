@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
+import styles from "./Footer.module.css";
 
 const Footer: React.FC = () => {
-    return (
-        <div className='footer'>
-            <p>
-                Copyright © Lisa Marie Photography 2024 | All Rights Reserved
-            </p>
-        </div>
-    );
+  return (
+    <footer className={styles.footer}>
+      <p>
+        Copyright © Lisa Marie Photography {new Date().getFullYear()} | All Rights Reserved
+      </p>
+    </footer>
+  );
 };
 
-export default Footer
+export default Footer;
