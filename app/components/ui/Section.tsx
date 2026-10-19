@@ -9,6 +9,8 @@ interface SectionProps {
   /** "muted" paints a full-bleed tinted background behind the content. */
   tone?: "default" | "muted";
   narrow?: boolean;
+  /** Reduce bottom padding when the next section already provides spacing. */
+  tightBottom?: boolean;
   /** Accessible name when the section has no visible heading to reference. */
   "aria-label"?: string;
 }
@@ -18,13 +20,20 @@ export function Section({
   id,
   tone = "default",
   narrow,
+  tightBottom = false,
   "aria-label": ariaLabel,
 }: SectionProps) {
   return (
     <section
       id={id}
       aria-label={ariaLabel}
-      className={`${styles.section} ${tone === "muted" ? styles.muted : ""}`}
+      className={[
+        styles.section,
+        tone === "muted" && styles.muted,
+        tightBottom && styles.tightBottom,
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <Container narrow={narrow}>{children}</Container>
     </section>

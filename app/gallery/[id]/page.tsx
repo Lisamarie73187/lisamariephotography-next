@@ -1,8 +1,7 @@
-import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { galleries } from "@/app/pictures";
+import { GalleryGrid } from "@/app/components/GalleryGrid";
 import { Button, Section, SectionHeading } from "@/app/components/ui";
 import styles from "./gallery.module.css";
 
@@ -37,25 +36,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
       </Button>
       <SectionHeading as="h1" eyebrow="Gallery" title={gallery.title} divider />
 
-      <ul className={styles.grid}>
-        {gallery.photos.map((photo, index) => (
-          <li
-            key={photo.src}
-            className={styles.item}
-            style={{ "--ratio": photo.width / photo.height } as CSSProperties}
-          >
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              width={photo.width}
-              height={photo.height}
-              sizes="(max-width: 767px) 100vw, 400px"
-              priority={index < 3}
-              className={styles.image}
-            />
-          </li>
-        ))}
-      </ul>
+      <GalleryGrid photos={gallery.photos} />
 
       <nav aria-label="More galleries" className={styles.more}>
         {others.map((other) => (

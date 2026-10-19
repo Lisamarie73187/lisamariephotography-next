@@ -11,3 +11,8 @@
     padding-block: var(--space-9);
   }
 }
+
+/* Declared after the breakpoint so it wins at every width. */
+.tightBottom {
+  padding-bottom: var(--space-3);
+}

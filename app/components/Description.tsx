@@ -4,7 +4,7 @@ import styles from "./Description.module.css";
 
 export const Description: React.FC = () => {
   return (
-    <Section narrow>
+    <Section narrow tightBottom>
       <SectionHeading
         as="h1"
         eyebrow="Capturing Love, Life, and Laughter"
