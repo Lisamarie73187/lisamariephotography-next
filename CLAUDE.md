@@ -25,7 +25,7 @@ Portfolio site for a lifestyle photographer. Next.js App Router (15), React 19, 
 - Build new sections from `Section` + `SectionHeading`; one `h1` per page.
 - Images: always `next/image` with real `width`/`height` from `pictures.ts`, a meaningful `alt`, and a `sizes` hint. Use `priority` only for above-the-fold images.
 - Navigation links use `/#section-id` so they work from any page. Section ids: `home`, `gallery`, `about`, `contact`.
-- Server components by default; add `"use client"` only for state/effects/browser APIs (currently `CarouselComponent`, `ContactForm`).
+- Server components by default; add `"use client"` only for state/effects/browser APIs (currently only `ContactForm`; the hero carousel is a pure-CSS looping strip).
 - Fonts: Cinzel (display/headings), Parisienne (script accents), Open Sans (body), exposed as `--font-display`, `--font-script`, `--font-body`.
 
 ## Photos
