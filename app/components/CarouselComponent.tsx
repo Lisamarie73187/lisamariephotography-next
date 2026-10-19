@@ -1,43 +1,47 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
-const image = "https://lisamariephotography.s3.us-west-1.amazonaws.com/carousel/photo-4.jpg"
-const imageTwo = "https://lisamariephotography.s3.us-west-1.amazonaws.com/carousel/photo-2.jpg"
-const imageThree = "https://lisamariephotography.s3.us-west-1.amazonaws.com/carousel/photo-3.jpg"
-const imageFour = "https://lisamariephotography.s3.us-west-1.amazonaws.com/carousel/photo-4-2.jpg"
+import { Carousel } from "react-responsive-carousel";
+import { heroPhotos } from "../pictures";
+import styles from "./CarouselComponent.module.css";
 
+export const CarouselComponent: React.FC = () => {
+  // Don't auto-advance for visitors who ask their OS to reduce motion.
+  const [autoPlay, setAutoPlay] = useState(false);
+  useEffect(() => {
+    setAutoPlay(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
-
-
-export const CarouselComponent: React.FC = () =>  {
-
-    return (
-        <Carousel
-            autoPlay
-            centerMode
-            centerSlidePercentage={60}
-            infiniteLoop
-            interval={4000}
-            showArrows
-            swipeable
-            emulateTouch
-            useKeyboardArrows
-            transitionTime={2000}
-            showThumbs={false}
-        >
-            <div className='carousel-item'>
-                <img src={image} />
-            </div>
-            <div className='carousel-item'>
-                <img src={imageTwo}/>
-            </div>
-            <div className='carousel-item'>
-                <img src={imageThree}/>
-            </div>
-            <div className='carousel-item'>
-                <img src={imageFour}/>
-            </div>
-        </Carousel>
-    );
+  return (
+    <section id="home" aria-label="Featured photographs" className={styles.hero}>
+      <Carousel
+        autoPlay={autoPlay}
+        centerMode
+        centerSlidePercentage={60}
+        infiniteLoop
+        interval={4500}
+        showArrows
+        swipeable
+        emulateTouch
+        useKeyboardArrows
+        transitionTime={900}
+        showThumbs={false}
+        showStatus={false}
+      >
+        {heroPhotos.map((photo, index) => (
+          <div className={styles.item} key={photo.src}>
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              width={photo.width}
+              height={photo.height}
+              sizes="(max-width: 767px) 60vw, 700px"
+              priority={index < 2}
+            />
+          </div>
+        ))}
+      </Carousel>
+    </section>
+  );
 };
-

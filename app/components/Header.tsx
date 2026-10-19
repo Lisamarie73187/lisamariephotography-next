@@ -1,49 +1,49 @@
-"use client";
-import React from 'react';
-import Image from 'next/image';
-import '../styles/header.css';
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./Header.module.css";
 
-interface HeaderProps {
-    refs: {
-        homeRef: React.RefObject<HTMLDivElement>;
-        aboutRef: React.RefObject<HTMLDivElement>;
-        contactRef: React.RefObject<HTMLDivElement>;
-        profileRef: React.RefObject<HTMLDivElement>;
-    };
+const leftLinks = [
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About Me" },
+];
+const rightLinks = [
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#contact", label: "Contact" },
+];
+
+function NavLinks({ links }: { links: typeof leftLinks }) {
+  return (
+    <ul className={styles.links}>
+      {links.map(({ href, label }) => (
+        <li key={href}>
+          <Link href={href} className={styles.link}>
+            {label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
-const Header: React.FC<HeaderProps> = ({ refs }) => {
-
-
-
-    const navigateAndScroll = (ref: React.RefObject<HTMLDivElement>) => {
-        ref.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    };
-
-    return (
-        <header className="header">
-            <h2 onClick={() => navigateAndScroll(refs.homeRef)}>
-                Home
-            </h2>
-            <h2 onClick={() => navigateAndScroll(refs.aboutRef)}>
-                About Me
-            </h2>
-            <div className="image">
-                <Image 
-                    src="/assets/LisaMariePhotography.gif"
-                    alt="About me image"
-                    width={200}
-                    height={300}
-                />
-            </div>
-            <h2 onClick={() => navigateAndScroll(refs.profileRef)}>
-                Gallery 
-            </h2>
-            <h2 onClick={() => navigateAndScroll(refs.contactRef)}>
-                Contact
-            </h2>
-        </header>
-    );
-};
-
-export default Header;
+/** Site-wide sticky navigation. Links are plain anchors so they work from any page. */
+export default function Header() {
+  return (
+    <header className={styles.header}>
+      <nav aria-label="Primary" className={styles.nav}>
+        <NavLinks links={leftLinks} />
+        <Link href="/" className={styles.logo} aria-label="Lisa Marie Photography, home">
+          <Image
+            src="/assets/LisaMariePhotography.gif"
+            alt="Lisa Marie Photography"
+            width={593}
+            height={273}
+            sizes="(max-width: 767px) 120px, 170px"
+            unoptimized
+            priority
+          />
+        </Link>
+        <NavLinks links={rightLinks} />
+      </nav>
+    </header>
+  );
+}

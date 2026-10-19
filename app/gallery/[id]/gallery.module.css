@@ -1,0 +1,34 @@
+.back {
+  margin-bottom: var(--space-6);
+}
+
+/* Justified rows: each photo grows in proportion to its aspect ratio so a row fills the width. */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  flex: calc(var(--ratio) * 100) 1 calc(var(--ratio) * 16rem);
+  min-width: min(100%, calc(var(--ratio) * 9rem));
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
